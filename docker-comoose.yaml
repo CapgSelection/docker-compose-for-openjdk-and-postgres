@@ -1,0 +1,25 @@
+services:
+  java:
+    image: openjdk:latest
+    volumes:
+      - java_data:/var/www/java
+    container_name: java
+    ports:
+    - 80
+
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_DB: springDemo
+
+    volumes:
+    - db_data:/var/lib/postgresql/data
+    ports:
+    - "5432:80"
+    
+volumes:
+  java_data: 
+  db_data:
